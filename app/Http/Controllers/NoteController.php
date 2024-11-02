@@ -12,7 +12,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return "Index";
+        return view("note.index");
     }
 
     /**
@@ -20,7 +20,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        return "Create";
+        return view("note.creat");
     }
 
     /**
@@ -28,7 +28,7 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        return "Store";
+        return view("note.store");
     }
 
     /**
@@ -36,7 +36,7 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        return "Show";
+        return view("note.show");
     }
 
     /**
@@ -44,7 +44,7 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
-        return "Edit";
+        return view("note.edit");
     }
 
     /**
@@ -52,7 +52,7 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        return "Update";
+        return view("note.update");
     }
 
     /**
@@ -60,6 +60,6 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        return "Destroy";
+        return view("note.destroy");
     }
 }

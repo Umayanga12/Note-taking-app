@@ -5,24 +5,21 @@ use App\Http\Controllers\welcomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [welcomeController::class, "welcome"])->name("welcome");
+
+//routings for note
 // Route::get("/note", [NoteController::class], "index")->name("note.index");
 // Route::get("/note/create", [NoteController::class], "create")->name(
 //     "note.create"
 // );
-// Route::post("/note/store", [NoteController::class], "store")->name(
-//     "note.store"
-// );
-// Route::get("/note/show{id}", [NoteController::class], "show")->name(
-//     "note.show"
-// );
-// Route::get("/note/edit/{id}", [NoteController::class], "edit")->name(
+// Route::post("/note", [NoteController::class], "store")->name("note.store");
+// Route::get("/note/{id}", [NoteController::class], "show")->name("note.show");
+// Route::get("/note/{id}/edit", [NoteController::class], "edit")->name(
 //     "note.edit"
 // );
-// Route::put("/note/update/{id}", [NoteController::class], "update")->name(
+// Route::put("/note/{id}", [NoteController::class], "update")->name(
 //     "note.update"
 // );
-// Route::delete("/note/destroy/{id}", [NoteController::class], "destroy")->name(
+// Route::delete("/note/{id}", [NoteController::class], "destroy")->name(
 //     "note.destroy"
 // );
-
 Route::resource("note", NoteController::class);
