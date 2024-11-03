@@ -12,7 +12,9 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return view("note.index");
+        $notes = Note::query()->orderby("created_at", "desc")->get();
+        //dd($notes);
+        return view("note.index", ["note" => $notes]);
     }
 
     /**
@@ -28,7 +30,7 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        return view("note.store");
+        return view("note.store", ["note" => $notes]);
     }
 
     /**
