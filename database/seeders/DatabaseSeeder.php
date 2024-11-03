@@ -6,6 +6,7 @@ use App\Models\Note;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,11 +17,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            "id" => 1000,
+        User::create([
             "name" => "Test User",
-            "email" => "test@example.com",
-            "password" => bcrypt("password"),
+            "email" => "unique" . Str::random(5) . "@example.com", // unique email
+            "email_verified_at" => now(),
+            "password" => bcrypt("password"), // or use Hash::make
+            "remember_token" => Str::random(10),
         ]);
+
+        Note::factory()->count(100)->create();
     }
 }
