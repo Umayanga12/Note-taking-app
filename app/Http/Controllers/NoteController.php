@@ -30,6 +30,7 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
+        $notes = Note::query()->orderby("created_at", "desc")->get();
         return view("note.store", ["note" => $notes]);
     }
 
