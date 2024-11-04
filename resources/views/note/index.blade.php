@@ -1,7 +1,4 @@
 <x-layout>
-    <div>
-        <h1>Index</h1>
-    </div>
     <div class="note-container">
         <a href="{{route('note.create')}}" class="new-note-btn">
             New Note
