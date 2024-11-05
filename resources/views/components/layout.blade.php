@@ -14,9 +14,6 @@
                   {{ session('message') }}
                </div>
         @endif
-        <div class="sucess-message">
-           {{session('message')}}
-        </div>
        {{ $slot }}
     </body>
 </html>

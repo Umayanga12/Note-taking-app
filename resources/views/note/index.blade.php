@@ -4,7 +4,7 @@
             New Note
         </a>
         <div class="notes">
-            @foreach ($note as $note)
+            @foreach ($notes as $note)
                 <div class="note">
                     <div class="note-body">
                         {{ Str::words($note->note, 30) }}
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             @endforeach
-            {{$note->links()}}
         </div>
+        {{ $notes->links() }}
     </div>
 </x-layout>
