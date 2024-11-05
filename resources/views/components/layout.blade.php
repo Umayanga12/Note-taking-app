@@ -9,7 +9,11 @@
         @vite('resources/css/app.css', 'resources/js/app.js')
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        @session('message')
+        @if (session('message'))
+               <div class="success-message">
+                  {{ session('message') }}
+               </div>
+        @endif
         <div class="sucess-message">
            {{session('message')}}
         </div>

@@ -20,6 +20,7 @@
                     </div>
                 </div>
             @endforeach
+            {{$note->links()}}
         </div>
     </div>
 </x-layout>

@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Models\Note;
 use Illuminate\Http\Request;
@@ -10,9 +12,8 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Note::query()->orderby("created_at", "desc")->get();
-        //dd($notes);
-        return view("note.index", ["note" => $notes]);
+        $notes = Note::query()->orderBy("created_at", "desc")->get();
+        return view("note.index", ["notes" => $notes]);
     }
 
     /**
@@ -20,7 +21,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        return view("note.creat");
+        return view("note.create");
     }
 
     /**
@@ -28,15 +29,17 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        // $notes = Note::query()->orderby("created_at", "desc")->get();
-        // return view("note.store", ["note" => $notes]);
-        //
         $data = $request->validate([
-            'note' => 'required','string'
+            "note" => ["required", "string"],
         ]);
-        $data['user_id'] = auth()->id();
-        $note = Note::created($data);
-        return to_route('note.show',$note)->('message','Note was creatd successfully');
+
+        $data["user_id"] = auth()->id();
+        $note = Note::create($data); // Corrected `created` to `create`
+
+        return to_route("note.show", $note)->with(
+            "message",
+            "Note was created successfully"
+        );
     }
 
     /**
@@ -44,7 +47,7 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        return view("note.show");
+        return view("note.show", compact("note"));
     }
 
     /**
@@ -52,7 +55,7 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
-        return view("note.edit");
+        return view("note.edit", compact("note"));
     }
 
     /**
@@ -60,7 +63,16 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        return view("note.update");
+        $data = $request->validate([
+            "note" => ["required", "string"],
+        ]);
+
+        $note->update($data);
+
+        return to_route("note.show", $note)->with(
+            "message",
+            "Note was updated successfully"
+        );
     }
 
     /**
@@ -68,6 +80,11 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        return view("note.destroy");
+        $note->delete();
+
+        return to_route("note.index")->with(
+            "message",
+            "Note was deleted successfully"
+        );
     }
 }
